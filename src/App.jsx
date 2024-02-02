@@ -1,35 +1,92 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from "react";
+// css
+import css from "./app.module.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+// componetns
+
+// CRUD OPERARIONS
+const App = () => {
+  const [value, setValue] = useState([
+    { todo: "This is Test data, you can add yours" },
+  ]);
+  const [edit, setEdit] = useState(null);
+
+  useEffect(() => {
+    // Save data to local storage after a 1-second delay
+    const timerId = setTimeout(() => {
+      localStorage.setItem("valueSave", JSON.stringify(value));
+    }, 500);
+
+    // Cleanup function to clear the timer if the component unmounts or 'value' changes
+    return () => clearTimeout(timerId);
+  }, [value]); // Add 'value' to the dependency array
+
+  useEffect(() => {
+    // Retrieve data from local storage
+    const storedValue = JSON.parse(localStorage.getItem("valueSave"));
+
+    // Set the state with the retrieved data
+    if (storedValue) {
+      setValue(storedValue);
+    }
+  }, []);
+
+  function getValue() {
+    const input = document.getElementById("getValue").value;
+    const obj = { todo: input };
+    input && setValue((v) => [...v, obj]);
+    document.getElementById("getValue").value = "";
+  }
+
+  function deleteBtn(i) {
+    setValue((v) => v.filter((_, index) => i !== index));
+  }
+
+  function editTodo(i) {
+    setEdit((e) => i);
+  }
+  function save(i) {
+    const inputVal = document.getElementById("inputVal").value;
+    setValue((v) =>
+      v.map((get, index) => (index === i ? { ...get, todo: inputVal } : get))
+    );
+    setEdit(() => null);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <div className={css.container}>
+        <div className={css.inputWrapper}>
+          <input
+            className={css.input}
+            id="getValue"
+            type="text"
+            placeholder="ADD TO DO LIST"
+          />
+          <button className={css.button} onClick={getValue}>
+            ADD TODO
+          </button>
+        </div>
+        <div className={css.orderList}>
+          {value.map((get, i) => (
+            <div key={i}>
+              {edit !== i ? (
+                <div>{get.todo}</div>
+              ) : (
+                <input id="inputVal" type="text" defaultValue={get.todo} />
+              )}
 
-export default App
+              <div className={css.btn}>
+                <button onClick={() => deleteBtn(i)}>DELETE</button>
+                <button onClick={() => editTodo(i)}>Edit</button>
+                <button onClick={() => save(i)}>Save</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default App;

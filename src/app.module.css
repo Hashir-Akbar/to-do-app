@@ -1,0 +1,81 @@
+.container {
+  max-width: 800px;
+  margin: 5em auto 2em auto;
+}
+.inputWrapper {
+  display: flex;
+  white-space: nowrap;
+  margin-inline: 1em;
+  gap: 0.5em;
+}
+.input {
+  padding: 8px;
+  border: 1px solid #ccc;
+
+  width: 80%;
+}
+.button {
+  padding: 8px 16px;
+  background-color: #82a4ee;
+  border: none;
+  font-weight: bold;
+  color: rgb(245, 245, 245);
+  cursor: pointer;
+}
+.button:active {
+  background-color: #5986e7;
+}
+.orderList {
+  margin: 1em;
+  display: grid;
+  max-width: 736px;
+  gap: 0.5em;
+}
+.orderList > div {
+  background: #d6e3ff;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  justify-content: space-between;
+  gap: 1em;
+  word-break: break-word;
+}
+.orderList div::selection {
+  background-color: #0000007e;
+  color: #d6e3ff;
+}
+.orderList input {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 0.3em;
+}
+.btn button {
+  padding: 6px 12px;
+  background-color: #ff8181;
+  border: none;
+  cursor: pointer;
+  word-break: keep-all;
+}
+.btn button:active {
+  background-color: #ff5858;
+}
+.btn {
+  display: flex;
+  gap: 0.3em;
+}
+.btn button:nth-child(2) {
+  background-color: #3fd471;
+}
+.btn button:nth-child(3) {
+  background-color: #69a4cc;
+}
+@media (max-width: 474px) {
+  .btn {
+    flex-wrap: wrap;
+    justify-content: end;
+  }
+  .btn button {
+    padding: 4px 8px;
+  }
+}
