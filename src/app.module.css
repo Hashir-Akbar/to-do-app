@@ -51,24 +51,32 @@
   padding: 0.3em;
 }
 .btn button {
-  padding: 6px 12px;
-  background-color: #ff8181;
+  padding: 8px 12px 6px 12px;
+  background-color: #ed5e68;
   border: none;
   cursor: pointer;
+  color: #f1f1f1;
   word-break: keep-all;
+  font-size: 1.125em;
 }
 .btn button:active {
-  background-color: #ff5858;
+  background-color: #d8575f;
 }
 .btn {
   display: flex;
   gap: 0.3em;
 }
 .btn button:nth-child(2) {
-  background-color: #3fd471;
+  background-color: #339966;
+}
+.btn button:nth-child(2):active {
+  background-color: #287a51;
 }
 .btn button:nth-child(3) {
-  background-color: #69a4cc;
+  background-color: #428bca;
+}
+.btn button:nth-child(3):active {
+  background-color: #3774a8;
 }
 @media (max-width: 474px) {
   .btn {
@@ -76,6 +84,6 @@
     justify-content: end;
   }
   .btn button {
-    padding: 4px 8px;
+    padding: 6px 8px 4px 8px;
   }
 }

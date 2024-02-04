@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 // css
 import css from "./app.module.css";
-
+// icons
+import { MdDeleteForever } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import { FaSave } from "react-icons/fa";
 // componetns
 
 // CRUD OPERARIONS
@@ -19,7 +22,7 @@ const App = () => {
 
     // Cleanup function to clear the timer if the component unmounts or 'value' changes
     return () => clearTimeout(timerId);
-  }, [value]); // Add 'value' to the dependency array
+  }, [value]);
 
   useEffect(() => {
     // Retrieve data from local storage
@@ -77,9 +80,15 @@ const App = () => {
               )}
 
               <div className={css.btn}>
-                <button onClick={() => deleteBtn(i)}>DELETE</button>
-                <button onClick={() => editTodo(i)}>Edit</button>
-                <button onClick={() => save(i)}>Save</button>
+                <button onClick={() => deleteBtn(i)}>
+                  <MdDeleteForever />
+                </button>
+                <button onClick={() => editTodo(i)}>
+                  <FaEdit />
+                </button>
+                <button onClick={() => save(i)}>
+                  <FaSave />
+                </button>
               </div>
             </div>
           ))}
