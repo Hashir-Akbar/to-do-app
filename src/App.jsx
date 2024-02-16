@@ -5,7 +5,7 @@ import css from "./app.module.css";
 import { MdDeleteForever } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { FaSave } from "react-icons/fa";
-// componetns
+
 
 // CRUD OPERARIONS
 const App = () => {
@@ -93,6 +93,8 @@ const App = () => {
             </div>
           ))}
         </div>
+
+        <p>Made with ❤ by <a href='https://github.com/Hashir-Akbar' target='_blank'>Hashir Akbar</a></p>
       </div>
     </>
   );
